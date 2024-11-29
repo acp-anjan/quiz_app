@@ -1,7 +1,12 @@
 from bson import ObjectId
-from pymongo import MongoClient, errors
+from pymongo import MongoClient
+from app.config import get_environment_settings
 
-client = MongoClient("mongodb+srv://username:userpwd@cluster0.tzh37.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+# Get configuration
+settings = get_environment_settings()
+
+
+client = MongoClient(settings.MONGODB_STRING)
 db = client["quiz_app"]
 quiz_collection = db["quizzes"]
 
